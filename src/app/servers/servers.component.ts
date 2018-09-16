@@ -6,28 +6,30 @@ import { Component, OnInit } from '@angular/core';
   //template: '<app-server></app-server><app-server></app-server>',
   styleUrls: ['./servers.component.css']
 })
-export class ServersComponent implements OnInit {
+export class ServersComponent implements OnInit 
+{
+    allowNewServer: boolean = false;
+    serverCreationStatus: string = 'No server was created!';
+    serverCreated: boolean = false;
+    serverName: string = '';
+    servers : Array<String> = ['Test Server', 'Test Server 2'];
 
-  allowNewServer: boolean = false;
+    constructor() { }
 
-  serverCreationStatus: string = 'No server was created!';
+    ngOnInit() {
+    }
 
-  serverName: string = '';
+    onCreateServer()
+    {
+      this.serverCreated = true;
+      this.servers.push(this.serverName);
+      this.serverCreationStatus = 'Server was created! Name is' + this.serverName;
+    }
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  onCreateServer()
-  {
-    this.serverCreationStatus = 'Server was created!';
-  }
-
-  onUpdateServerName(value: string)
-  {
-    console.log(value);
-    this.serverName = value;
-  }
+    onUpdateServerName(value: string)
+    {
+      console.log(value);
+      this.serverName = value;
+    }
 
 }
